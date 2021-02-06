@@ -49,7 +49,6 @@ const getCountriesData = async () => {
 
     if (countryData) {
       data[country.toUpperCase()] = countryData;
-      console.log(countryData);
 
       urlData[country.toUpperCase()] = countryData.map((item) => {
         const lastItem = item.url.substring(item.url.lastIndexOf('/') + 1);
