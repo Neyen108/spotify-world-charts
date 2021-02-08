@@ -5,7 +5,11 @@ import World from './World';
 import Loader from './Loader';
 
 function App() {
-  return <World />;
+  return (
+    <>
+      <World />
+    </>
+  );
 }
 
 export default App;

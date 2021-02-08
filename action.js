@@ -14,7 +14,10 @@ const getTopTracksPerCountry = async (country) => {
   //return the promise
 
   return new Promise((resolve, reject) => {
-    //get the csv file
+    //get the csv file via https GET request
+    //parse the response (res) i.e. the csv file
+    //store the country data in the data array
+    //must contain number, trackname, artist, streams, url
     https.get(
       `https://spotifycharts.com/regional/${country}/daily/latest/download`,
       (res) => {

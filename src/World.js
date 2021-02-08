@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import MapChart from './MapChart';
 import './World.css';
 
-const World = () => {
+const World = ({ countries }) => {
   const [content, setContent] = useState('');
 
   return (
@@ -15,7 +15,7 @@ const World = () => {
       <div className='Subtitle'>
         Hover on a country to see the most streamed track of the day
       </div>
-      <MapChart setTooltipContent={setContent} />
+      <MapChart setTooltipContent={setContent} countries={countries} />
       <ReactTooltip>{content}</ReactTooltip>
     </div>
   );

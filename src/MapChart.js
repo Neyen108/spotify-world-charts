@@ -22,7 +22,7 @@ const rounded = (num) => {
   }
 };
 
-const MapChart = ({ setTooltipContent }) => {
+const MapChart = ({ setTooltipContent, countries }) => {
   return (
     <>
       <ComposableMap data-tip=''>
