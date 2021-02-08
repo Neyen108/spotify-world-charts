@@ -1,7 +1,6 @@
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
+  schedule:
+    - cron:  '0 3 * * *' # Every hour. Ref https://crontab.guru/examples.html
 
 name: Get csv from spotify
 
