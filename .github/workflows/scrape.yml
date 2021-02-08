@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '5 * * * *' #03:00UTC everyday 
+    - cron: '0 * * * *' #03:00UTC everyday 
 
 name: Get csv from spotify
 
@@ -16,4 +16,4 @@ jobs:
     - uses: mikeal/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH_NAME: 'main'
+        BRANCH_NAME: main
