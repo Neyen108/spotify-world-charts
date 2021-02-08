@@ -9,7 +9,7 @@ function App() {
   //get the countries from my repository
   const { isLoading, data } = useQuery('repoData', async () => {
     const res = await fetch(
-      'https://raw.githubusercontent.com/Neyen108/spotify-world-charts/main/data/spotifyWorldCharts.json'
+      'https://raw.githubusercontent.com/Neyen108/spotify-world-charts/master/data/spotifyWorldCharts.json'
     );
 
     return res.json();
