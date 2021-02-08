@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '45 15 * * *' #03:00UTC everyday 
+    - cron: '5 * * * *' #03:00UTC everyday 
 
 name: Get csv from spotify
 
