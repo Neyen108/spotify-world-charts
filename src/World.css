@@ -1,0 +1,20 @@
+.World {
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.Title {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.Subtitle {
+  font-size: 1rem;
+}
+
+.Title span {
+  color: #1ed65f;
+}
