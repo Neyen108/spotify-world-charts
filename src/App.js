@@ -7,10 +7,12 @@ import Loader from './Loader';
 
 function App() {
   //get the countries from my repository
-  const { isLoading, data } = useQuery('repoData', () => {
-    fetch(
+  const { isLoading, data } = useQuery('repoData', async () => {
+    const res = await fetch(
       'https://raw.githubusercontent.com/Neyen108/spotify-world-charts/main/data/spotifyWorldCharts.json'
-    ).then((res) => res.json());
+    );
+
+    return res.json();
   });
 
   return <>{isLoading ? <Loader /> : <World countries={data} />}</>;

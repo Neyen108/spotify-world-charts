@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import {
   ZoomableGroup,
   ComposableMap,
@@ -6,23 +6,20 @@ import {
   Geography,
   Graticule,
 } from 'react-simple-maps';
+import ReactTooltip from 'react-tooltip';
 
 import './MapChart.css';
 
 const geoUrl =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 
-const rounded = (num) => {
-  if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + 'Bn';
-  } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + 'M';
-  } else {
-    return Math.round(num / 100) / 10 + 'K';
-  }
-};
+const withCommas = (num) => Intl.NumberFormat().format(num);
 
 const MapChart = ({ setTooltipContent, countries }) => {
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, []);
+
   return (
     <>
       <ComposableMap data-tip=''>
@@ -30,34 +27,63 @@ const MapChart = ({ setTooltipContent, countries }) => {
           <Graticule stroke='gray' />
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
-              geographies.map((geo) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  stroke='#fff'
-                  onMouseEnter={() => {
-                    const { NAME, POP_EST } = geo.properties;
-                    setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
-                  }}
-                  onMouseLeave={() => {
-                    setTooltipContent('');
-                  }}
-                  style={{
-                    default: {
-                      fill: '#000',
-                      outline: 'none',
-                    },
-                    hover: {
-                      fill: '#F53',
-                      outline: 'none',
-                    },
-                    pressed: {
-                      fill: '#E42',
-                      outline: 'none',
-                    },
-                  }}
-                />
-              ))
+              geographies.map((geo) => {
+                const exist = Object.keys(countries).find(
+                  (i) => i === geo.properties.ISO_A2
+                );
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    stroke='#D3d3d3'
+                    onMouseEnter={() => {
+                      const { NAME, ISO_A2 } = geo.properties;
+                      if (exist) {
+                        ReactTooltip.rebuild();
+                        const countryData = countries[ISO_A2].find(
+                          (item) => item.number == 1
+                        );
+
+                        setTooltipContent(
+                          `<span style="font-weight:bold;"> ${NAME} </span> <br/> 
+                          Track: <span style="font-weight:bold;"> ${
+                            countryData.trackName
+                          }</span><br/>
+                          Artist: <span style="font-weight:bold;"> ${
+                            countryData.artist
+                          }</span><br/>
+                          Streams: <span style="font-weight:bold;"> ${withCommas(
+                            countryData.streams
+                          )}</span>`
+                        );
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      setTooltipContent('');
+                    }}
+                    onClick={() => {
+                      if (exist) {
+                        const { url } = countries[geo.properties.ISO_A2].find(
+                          (item) => item.number == 1
+                        );
+
+                        const win = window.open(url, '_blank');
+                        win.focus();
+                      }
+                    }}
+                    style={{
+                      default: {
+                        fill: exist ? '#1ed65f' : '#000',
+                        outline: 'none',
+                      },
+                      hover: {
+                        fill: exist ? '#1ed65f' : '#000',
+                        outline: 'none',
+                      },
+                    }}
+                  />
+                );
+              })
             }
           </Geographies>
         </ZoomableGroup>

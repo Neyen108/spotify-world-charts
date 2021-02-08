@@ -16,7 +16,7 @@ const World = ({ countries }) => {
         Hover on a country to see the most streamed track of the day
       </div>
       <MapChart setTooltipContent={setContent} countries={countries} />
-      <ReactTooltip>{content}</ReactTooltip>
+      <ReactTooltip html={true}>{content}</ReactTooltip>
     </div>
   );
 };
