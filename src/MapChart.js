@@ -16,7 +16,7 @@ const geoUrl =
 
 const withCommas = (num) => Intl.NumberFormat().format(num);
 
-const MapChart = ({ setTooltipContent, countries }) => {
+const MapChart = ({ setTooltipContent, countries, setCountryid }) => {
   useEffect(() => {
     ReactTooltip.rebuild();
   }, []);
@@ -42,6 +42,7 @@ const MapChart = ({ setTooltipContent, countries }) => {
                     stroke='#D3d3d3'
                     onMouseEnter={() => {
                       const { NAME, ISO_A2 } = geo.properties;
+
                       if (exist) {
                         ReactTooltip.rebuild();
                         const countryData = countries[ISO_A2].find(
@@ -67,7 +68,8 @@ const MapChart = ({ setTooltipContent, countries }) => {
                     }}
                     onClick={() => {
                       if (exist) {
-                        history.push('./toptracks');
+                        setCountryid(`${geo.properties.ISO_A2}`);
+                        history.push('/toptracks');
                       }
                     }}
                     style={{

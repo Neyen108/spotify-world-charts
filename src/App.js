@@ -17,14 +17,20 @@ function App() {
     return res.json();
   });
 
+  const [countryid, setCountryid] = useState('');
+
   return (
     <>
       <Switch>
         <Route exact path='/'>
-          {isLoading ? <Loader /> : <World countries={data} />}
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <World countries={data} setCountryid={setCountryid} />
+          )}
         </Route>
         <Route path='/toptracks'>
-          <TopTracks />
+          <TopTracks countryid={countryid} />
         </Route>
       </Switch>
     </>
