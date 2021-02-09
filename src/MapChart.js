@@ -1,4 +1,5 @@
 import React, { memo, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   ZoomableGroup,
   ComposableMap,
@@ -19,6 +20,9 @@ const MapChart = ({ setTooltipContent, countries }) => {
   useEffect(() => {
     ReactTooltip.rebuild();
   }, []);
+
+  //use the useHistory hook for better future use
+  const history = useHistory();
 
   return (
     <>
@@ -63,12 +67,7 @@ const MapChart = ({ setTooltipContent, countries }) => {
                     }}
                     onClick={() => {
                       if (exist) {
-                        const { url } = countries[geo.properties.ISO_A2].find(
-                          (item) => item.number == 1
-                        );
-
-                        const win = window.open(url, '_blank');
-                        win.focus();
+                        history.push('./toptracks');
                       }
                     }}
                     style={{
