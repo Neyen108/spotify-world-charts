@@ -1,7 +1,8 @@
 import React from 'react';
 
-const TopTracks = ({ countryid }) => {
-  return <h1>{countryid.toString()}</h1>;
+const TopTracks = (props) => {
+  console.log(props.location.state);
+  return <h1>{props.location.state}</h1>;
 };
 
 export default TopTracks;

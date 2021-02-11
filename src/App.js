@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { Route, Switch } from 'react-router-dom';
 
@@ -17,21 +17,18 @@ function App() {
     return res.json();
   });
 
-  const [countryid, setCountryid] = useState('');
-
+  //use the render method for TopTracks, as we are using history.push({}) for passing the country name
   return (
     <>
       <Switch>
         <Route exact path='/'>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <World countries={data} setCountryid={setCountryid} />
-          )}
+          {isLoading ? <Loader /> : <World countries={data} />}
         </Route>
-        <Route path='/toptracks'>
-          <TopTracks countryid={countryid} />
-        </Route>
+
+        <Route
+          path='/toptracks/:id'
+          render={(props) => <TopTracks {...props} />}
+        ></Route>
       </Switch>
     </>
   );
