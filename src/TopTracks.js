@@ -1,67 +1,88 @@
+import './TopTracks.css';
 import React, { useEffect, useRef, useState } from 'react';
+import { getTracksData } from './spotifyAPI/requestTopTracks';
+
+import Loader from './Loader';
 
 const TopTracks = (props) => {
-  const [item, setItem] = useState('adhvadvhaw');
-  console.log('tracks Render ');
+  const [tracksData, setTracksData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const audioRef = useRef(null);
-  const [status, setStatus] = useState('paused');
+  useEffect(async () => {
+    setTracksData(
+      (await getTracksData(props.trackIds[props.location.state])).tracks
+    );
+    setLoading(false);
+  }, []);
 
-  const handleClick = (res) => {
-    if (res === audioRef.current.src) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.src = res;
-      audioRef.current.play();
-    }
-  };
+  console.log(tracksData);
 
-  useEffect(() => {
-    audioRef.current.src = '';
-    audioRef.current.addEventListener('ended', () => {
-      audioRef.current.src = '';
-      setItem('stopped');
-    });
-  });
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div>
+          {tracksData.map((track, i) => {
+            const imgSrc = track.album.images[1].url;
+            const trackName = track.name;
+            const artistName = track.artists[0].name;
+            const album = track.album.name;
+            const albumType = track.album.album_type;
+            const previewUrl = track.preview_url;
+            const spotifyTrackUrl = track.external_urls.spotify;
+            const albumUrl = track.album.external_urls.spotify;
 
-  return (
-    <>
-      <h1>{item}</h1>
+            if (previewUrl) {
+              return (
+                <div className='track-container'>
+                  <img src={imgSrc} alt={trackName} className='track-img' />
+                  <div className='track-details'>
+                    <h4>Track : {trackName}</h4>
+                    <h4>Artist : {artistName}</h4>
+                    <h4>
+                      <a href={albumUrl}>Album : {album}</a>
+                    </h4>
+                    <h4>Album Type : {albumType}</h4>
+                    <h4>Track : {trackName}</h4>
+                    <button className='btn'>Preview</button>
+                    <a href={spotifyTrackUrl}>
+                      Listen to full track on spotify
+                    </a>
+                  </div>
+                </div>
+              );
+            } else {
+              return (
+                <div className='track-container'>
+                  <img src={imgSrc} alt={trackName} className='track-img' />
+                  <div className='track-details'>
+                    <p>Track : {trackName}</p>
+                    <h4>Artist : {artistName}</h4>
+                    <h4>
+                      <a href={albumUrl}>Album : {album}</a>
+                    </h4>
+                    <h4>Album Type : {albumType}</h4>
+                    <h4>Track : {trackName}</h4>
+                    <button className='btn'>No Preview available</button>
+                    <a href={spotifyTrackUrl}>
+                      Listen to full track on spotify
+                    </a>
+                  </div>
+                </div>
+              );
+            }
+          })}
+        </div>
 
-      <img
-        src='https://i.scdn.co/image/966ade7a8c43b72faa53822b74a899c675aaafee'
-        alt=''
-        onClick={() =>
-          handleClick(
-            'https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86'
-          )
-        }
-      />
-      <audio ref={audioRef}></audio>
-
-      <img
-        src='https://i.scdn.co/image/966ade7a8c43b72faa53822b74a899c675aaafee'
-        alt=''
-        onClick={() =>
-          handleClick(
-            'https://p.scdn.co/mp3-preview/3e05f5ed147ca075c7ae77c01f2cc0e14cfad78d?cid=774b29d4f13844c495f206cafdad9c86'
-          )
-        }
-      />
-    </>
-  );
+        <audio />
+      </>
+    );
+  }
 };
 
 export default TopTracks;
-
-// if (status === 'paused') {
-//             audioRef.current.pause();
-//             audioRef.current.src =
-//               'https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86';
-//             audioRef.current.play();
-//             setStatus('palying');
-//           } else {
-//             audioRef.current.pause();
-//             setStatus('paused');
-//           }
-//         }

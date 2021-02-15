@@ -4,7 +4,7 @@ import axios from 'axios';
 //request authentication
 export const requestAuth = async () => {
   //POST request to api/token endpoint
-  return axios('https://accounts.spotify.com/api/token', {
+  return await axios('https://accounts.spotify.com/api/token', {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization:

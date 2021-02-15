@@ -12,7 +12,9 @@ import { requestAuth } from './spotifyAPI/requestAuth';
 
 function App() {
   //to store the urlData from my repo
-  const [urlData, setUrlData] = useState({});
+  const [urlData, setUrlData] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   //get the countries from my repository
   const { isLoading, data } = useQuery('repoData', async () => {
@@ -24,11 +26,10 @@ function App() {
   });
 
   useEffect(async () => {
-    //get the spotify trackIds using the getTrackIds function defined in utils
-    setUrlData(await getTrackIds());
-
     //request authorization
     await requestAuth();
+    setUrlData(await getTrackIds());
+    setLoading(false);
   }, []);
 
   //use the render method for TopTracks, as we are using history.push({}) for passing the country name
@@ -41,7 +42,9 @@ function App() {
 
         <Route
           path='/toptracks/:id'
-          render={(props) => <TopTracks {...props} trackIds={urlData} />}
+          render={(props) =>
+            loading ? <Loader /> : <TopTracks {...props} trackIds={urlData} />
+          }
         ></Route>
       </Switch>
     </>

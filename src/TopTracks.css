@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.track-container {
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(204, 187, 187, 0.2);
+  display: flex;
+  margin: 20px;
+  overflow: hidden;
+  width: 90%;
+}
+
+.track-img {
+  padding: 30px;
+}
