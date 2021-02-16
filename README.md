@@ -1,5 +1,3 @@
-# (Work in Progress)
-
 # Spotify Charts Map
 
 Spotify Top Tracks by Region.
@@ -30,3 +28,4 @@ npm run build
 - [spotifycharts.com](https://spotifycharts.com/regional)
 - [react-tooltip](https://github.com/wwayne/react-tooltip)
 - [React Query](https://react-query.tanstack.com/)
+- [Spotify API](https://developer.spotify.com/documentation/web-api/)
