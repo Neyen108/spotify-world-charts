@@ -17,8 +17,6 @@ export const requestAuth = async () => {
     data: 'grant_type=client_credentials',
     method: 'POST',
   }).then((tokenResponse) => {
-    console.log(tokenResponse.data);
-
     const expiryTime =
       new Date().getTime() + tokenResponse.data.expires_in * 1000;
 
