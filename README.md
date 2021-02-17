@@ -1,6 +1,7 @@
 # Spotify World Charts 
 
-Shows Spotify Top Tracks by Region.     Also plays previews of the Top Ten most streamed songs of a region. 
+Shows Spotify Top Tracks by Region.  
+Also plays previews of the Top Ten most streamed songs of a region. 
 
 ## 🛠 Installing
 
@@ -28,4 +29,23 @@ npm run build
 - [spotifycharts.com](https://spotifycharts.com/regional)
 - [react-tooltip](https://github.com/wwayne/react-tooltip)
 - [React Query](https://react-query.tanstack.com/)
-- [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [Spotify API](https://developer.spotify.com/documentation/web-api/)  
+  
+## 🛠 Local Development Environment
+
+   ```bash
+   Include your own Client Id and Client Secret Key from Spotify Developer API service inside a constants.js file.  
+   Put the constants.js file inside a constants folder inside the src folder.
+   Like this -> /src/constants/constants.js
+   ```
+   
+   ```javascript
+   const SpotifyCredentials = {
+  clientId: 'YOUR CLIENT ID',
+  clientSecret: 'YOUR SECRET KEY',
+   };
+
+   export default SpotifyCredentials;
+   ```
+
+   
