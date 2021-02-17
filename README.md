@@ -1,7 +1,7 @@
 # Spotify World Charts 
 
 Shows Spotify Top Tracks by Region. 
-Also plays previews of the Top Ten most streamed songs of a region. 
+ Also plays previews of the Top Ten most streamed songs of a region. 
 
 ## 🛠 Installing
 
