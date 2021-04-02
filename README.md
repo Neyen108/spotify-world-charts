@@ -1,8 +1,8 @@
-# Spotify World Charts 
+# Spotify World Charts (https://spotifyworldcharts.netlify.app/) 
 
-Shows Spotify Top Tracks by Region.  
-[WebSite](https://spotifyworldcharts.netlify.app/)    
-Also plays previews of the Top Ten most streamed songs today, of a region. 
+Shows Spotify Top Tracks by Region.    
+   
+Also plays previews of the Top Ten most streamed songs today, of a region.   
 
 ## 🛠 Installing
 
