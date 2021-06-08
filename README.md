@@ -1,19 +1,27 @@
-# Spotify World Charts (https://spotifyworldcharts.netlify.app/) 
+# [Spotify World Charts](https://spotifyworldcharts.netlify.app/) 
 
-Shows Spotify Top Tracks by Region.    
+Shows Spotify's Most Streamed Tracks by Region.    
    
 Also plays previews of the Top Ten most streamed songs today, of a region.   
 
+## ⬇ Downloading  
+Go the Github CLI and copy-paste: 
+```bash
+gh repo clone Neyen108/spotify-world-charts
+```   
+Or download as a zip file.
+
 ## 🛠 Installing
 
-1. Install dependencies
+1. Install dependencies:   
+   Go to the project directory (/spotify-world-charts) and run the following in the terminal:   
 
    ```bash
    npm install
    ```
 
-2. Fire up the server and watch files
-
+2. Fire up the server and watch files:
+   Go to the project directory and run the following in the terminal to start the web-app:   
    ```bash
    npm start
    ```
