@@ -54,10 +54,10 @@ const getCountriesData = async () => {
       data[country.toUpperCase()] = countryData;
 
       urlData[country.toUpperCase()] = countryData.map((item) => { 
-        if(item.url){
+        
         const lastItem = item.url.substring(item.url.lastIndexOf('/') + 1);
         return lastItem;
-        }
+        
       });
     }
   }
