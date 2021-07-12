@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron:  '0 3 * * *' # at 12am every wednesday. Ref https://crontab.guru/examples.html
+    - cron:  '1 5 1 2 *' # 
 
 name: Get csv from spotify
 
